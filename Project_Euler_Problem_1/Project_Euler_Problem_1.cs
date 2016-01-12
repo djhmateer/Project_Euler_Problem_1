@@ -52,7 +52,8 @@ namespace Project_Euler_Problem_1
         public void TestAnswerIsCorrect()
         {
             List<int> multiplesOfThreeAndFive = AddMultiplesOfThreeAndFiveToList.AddMultiplesToList();
-            Assert.Equal(233168, multiplesOfThreeAndFive.Sum());
+            int correctAnswer = 233168;
+            Assert.Equal(correctAnswer, multiplesOfThreeAndFive.Sum());
         }
     }
 }
