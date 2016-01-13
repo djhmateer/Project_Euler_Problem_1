@@ -19,7 +19,7 @@ namespace Project_Euler_Problem_1
     class AddMultiplesOfThreeAndFiveToList
     {
         // Returns whether a given number is a multiple of another given number
-        private static bool IsDivisible(int multiple, int number)
+        public static bool IsDivisible(int multiple, int number)
         {
             return (multiple % number) == 0;
         }
@@ -48,12 +48,29 @@ namespace Project_Euler_Problem_1
     // A test class to compare the correct answer to the problem against the answer provided by the code soltion
     public class TestClass
     {
+        // Test the correct answer against the answer that the solution provides
         [Fact]
         public void TestAnswerIsCorrect()
         {
             List<int> multiplesOfThreeAndFive = AddMultiplesOfThreeAndFiveToList.AddMultiplesToList();
             int correctAnswer = 233168;
             Assert.Equal(correctAnswer, multiplesOfThreeAndFive.Sum());
+        }
+
+        // Test to ensure that the IsDivisble method returns true when a number is a multiple of another
+        [Fact]
+        public void TestIsDivisible()
+        {
+            bool testIsDivisble = AddMultiplesOfThreeAndFiveToList.IsDivisible(10,5);
+            Assert.True(testIsDivisble);
+        }
+
+        // Test to ensure that the IsDivisble method returns false when a number isn't a multiple of another
+        [Fact]
+        public void TestIsNotDivisible()
+        {
+            bool testIsDivisble = AddMultiplesOfThreeAndFiveToList.IsDivisible(28, 13);
+            Assert.False(testIsDivisble);
         }
     }
 }
