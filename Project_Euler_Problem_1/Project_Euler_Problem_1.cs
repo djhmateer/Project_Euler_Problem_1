@@ -5,37 +5,41 @@ using Xunit;
 
 namespace Project_Euler_Problem_1
 {
-    // Console output displaying the answer to the problem
+    // Class containing main entry point of the application
     class ProjectEulerProblem1
     {
         static void Main()
         {
-            List<int> multiplesOfThreeAndFive = AddMultiplesOfThreeAndFiveToList.AddMultiplesToList();
-            Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " + multiplesOfThreeAndFive.Sum());
+            // Title
+            Console.WriteLine("********** Project Euler: Problem One **********\n");
+
+            // Access the members of the static AddMultiplesToList class
+            List<int> customeMultiplesBelowOneThousand = AddMultiplesToList.returnCustomeMultiplesBelowOneThousand();
+            List<int> multiplesOfThreeAndFiveBelowOneThousand = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand();
+            List<int> multiplesOfSixAndNineBelowOneThousand = AddMultiplesToList.returnMultiplesOfSixAndNineBelowOneThousand();
+
+            // Output the results to the console window
+            Console.WriteLine("\nThe sum of all the multiples of the user supplied integers is : " + customeMultiplesBelowOneThousand.Sum());
+            Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " + multiplesOfThreeAndFiveBelowOneThousand.Sum());
+            Console.WriteLine("The sum of all the multiples of 6 or 9 below 1000 is : " + multiplesOfSixAndNineBelowOneThousand.Sum());
         }
     }
 
-    // Adds multiples of 3 and 5 to a list that meet the criteria and returns the list
-    class AddMultiplesOfThreeAndFiveToList
+    // Static Class containing methods that add multiples of an integer below 1000 to a list
+    public static class AddMultiplesToList
     {
-        // Returns whether a given number is a multiple of another given number
-        public static bool IsDivisible(int multiple, int number)
-        {
-            return (multiple % number) == 0;
-        }
-
-        // Adds a number to the list if it is a multiple of 3 or 5
-        public static List<int> AddMultiplesToList()
+        // Adds an integer to the list if it is a multiple of 3 or 5 below 1000
+        public static List<int> returnMultiplesOfThreeAndFiveBelowOneThousand()
         {
             List<int> multiplesOfThreeAndFive = new List<int>();
 
-            for (int multiple = 0; multiple < 1000; multiple++)
+            for (int multiple = 1; multiple < 1000; multiple++)
             {
-                if (IsDivisible(multiple, 3))
+                if (CustomMathematics.IsDivisible(multiple, 3))
                 {
                     multiplesOfThreeAndFive.Add(multiple);
                 }
-                else if (IsDivisible(multiple, 5))
+                else if (CustomMathematics.IsDivisible(multiple, 5))
                 {
                     multiplesOfThreeAndFive.Add(multiple);
                 }
@@ -43,33 +47,89 @@ namespace Project_Euler_Problem_1
 
             return multiplesOfThreeAndFive;
         }
+
+        // Adds an integer to the list if it is a multiple of 6 or 9 below 1000
+        public static List<int> returnMultiplesOfSixAndNineBelowOneThousand()
+        {
+            List<int> multiplesOfSixAndNine = new List<int>();
+
+            for (int multiple = 1; multiple < 1000; multiple++)
+            {
+                if (CustomMathematics.IsDivisible(multiple, 6))
+                {
+                    multiplesOfSixAndNine.Add(multiple);
+                }
+                else if (CustomMathematics.IsDivisible(multiple, 9))
+                {
+                    multiplesOfSixAndNine.Add(multiple);
+                }
+            }
+
+            return multiplesOfSixAndNine;
+        }
+
+        // Adds an integer to the list if it is a multiple of the user supplied integer below 1000
+        public static List<int> returnCustomeMultiplesBelowOneThousand()
+        {
+            Console.Write("Enter Integer 1: ");
+            string integerOne = Console.ReadLine();
+
+            Console.Write("Enter Integer 2: ");
+            string integerTwo = Console.ReadLine();
+
+            List<int> customMultiplesBelowOneThousand = new List<int>();
+
+            for (int multiple = 1; multiple < 1000; multiple++)
+            {
+                if (CustomMathematics.IsDivisible(multiple, Convert.ToInt32(integerOne)))
+                {
+                    customMultiplesBelowOneThousand.Add(multiple);
+                }
+                else if (CustomMathematics.IsDivisible(multiple, Convert.ToInt32(integerTwo)))
+                {
+                    customMultiplesBelowOneThousand.Add(multiple);
+                }
+            }
+
+            return customMultiplesBelowOneThousand;
+        }
     }
 
-    // A test class to compare the correct answer to the problem against the answer provided by the code soltion
+    // Static Maths Class: Scope to add further methods and create a Class Library from this for use in further Euler problems
+    public static class CustomMathematics
+    {
+        // Returns true or false whether an integer is a multiple of another integer
+        public static bool IsDivisible(int multiple, int integer)
+        {
+            return (multiple % integer) == 0;
+        }
+    }
+
+    // Test Class using Xunit
     public class TestClass
     {
         // Test the correct answer against the answer that the solution provides
         [Fact]
         public void TestAnswerIsCorrect()
         {
-            List<int> multiplesOfThreeAndFive = AddMultiplesOfThreeAndFiveToList.AddMultiplesToList();
+            List<int> multiplesOfThreeAndFive = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand();
             int correctAnswer = 233168;
             Assert.Equal(correctAnswer, multiplesOfThreeAndFive.Sum());
         }
 
-        // Test to ensure that the IsDivisble method returns true when a number is a multiple of another
+        // Test to ensure that the IsDivisble method returns true when an integer is a multiple of another
         [Fact]
         public void TestIsDivisible()
         {
-            bool testIsDivisble = AddMultiplesOfThreeAndFiveToList.IsDivisible(10,5);
+            bool testIsDivisble = CustomMathematics.IsDivisible(10,5);
             Assert.True(testIsDivisble);
         }
 
-        // Test to ensure that the IsDivisble method returns false when a number isn't a multiple of another
+        // Test to ensure that the IsDivisble method returns false when an integer isn't a multiple of another
         [Fact]
         public void TestIsNotDivisible()
         {
-            bool testIsDivisble = AddMultiplesOfThreeAndFiveToList.IsDivisible(28, 13);
+            bool testIsDivisble = CustomMathematics.IsDivisible(28, 13);
             Assert.False(testIsDivisble);
         }
     }
