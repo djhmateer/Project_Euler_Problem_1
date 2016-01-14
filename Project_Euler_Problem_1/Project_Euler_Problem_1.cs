@@ -107,25 +107,23 @@ namespace Project_Euler_Problem_1
         [Fact]
         public void testAnswerIsCorrect()
         {
-            List<int> multiplesOfThreeAndFive = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand();
-            int correctAnswer = 233168;
-            Assert.Equal(correctAnswer, multiplesOfThreeAndFive.Sum());
+            int expected = 233168;
+            int actual = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand().Sum();
+            Assert.Equal(expected, actual);
         }
 
         // Test to ensure that the IsDivisble method returns true when an integer is a multiple of another
         [Fact]
         public void testIsDivisible()
         {
-            bool testIsDivisble = CustomMathematics.IsDivisible(10,5);
-            Assert.True(testIsDivisble);
+            Assert.True(CustomMathematics.IsDivisible(10,5));
         }
 
         // Test to ensure that the IsDivisble method returns false when an integer isn't a multiple of another
         [Fact]
         public void testIsNotDivisible()
         {
-            bool testIsDivisble = CustomMathematics.IsDivisible(28, 13);
-            Assert.False(testIsDivisble);
+            Assert.False(CustomMathematics.IsDivisible(28,13));
         }
     }
 }
