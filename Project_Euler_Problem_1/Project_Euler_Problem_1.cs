@@ -13,15 +13,10 @@ namespace Project_Euler_Problem_1
             // Title
             Console.WriteLine("********** Project Euler: Problem One **********\n");
 
-            // Access the members of the static AddMultiplesToList class
-            List<int> customeMultiplesBelowOneThousand = AddMultiplesToList.returnCustomeMultiplesBelowOneThousand();
-            List<int> multiplesOfThreeAndFiveBelowOneThousand = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand();
-            List<int> multiplesOfSixAndNineBelowOneThousand = AddMultiplesToList.returnMultiplesOfSixAndNineBelowOneThousand();
-
             // Output the results to the console window
-            Console.WriteLine("\nThe sum of all the multiples of the user supplied integers is : " + customeMultiplesBelowOneThousand.Sum());
-            Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " + multiplesOfThreeAndFiveBelowOneThousand.Sum());
-            Console.WriteLine("The sum of all the multiples of 6 or 9 below 1000 is : " + multiplesOfSixAndNineBelowOneThousand.Sum());
+            Console.WriteLine("\nThe sum of all the multiples of the user supplied integers is : " + AddMultiplesToList.returnCustomeMultiplesBelowOneThousand().Sum());
+            Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " + AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand().Sum());
+            Console.WriteLine("The sum of all the multiples of 6 or 9 below 1000 is : " + AddMultiplesToList.returnMultiplesOfSixAndNineBelowOneThousand().Sum());
         }
     }
 
