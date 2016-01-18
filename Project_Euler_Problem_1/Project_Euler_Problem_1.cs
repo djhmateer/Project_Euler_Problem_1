@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+
 
 namespace Project_Euler_Problem_1
 {
@@ -14,7 +14,7 @@ namespace Project_Euler_Problem_1
             Console.WriteLine("********** Project Euler: Problem One **********\n");
 
             // Output the results to the console window
-            Console.WriteLine("\nThe sum of all the multiples of the user supplied integers is : " + AddMultiplesToList.returnCustomeMultiplesBelowOneThousand().Sum());
+            Console.WriteLine("\nThe sum of all the multiples of the user supplied integers is : " + AddMultiplesToList.returnCustomMultiplesBelowOneThousand().Sum());
             Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " + AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand().Sum());
             Console.WriteLine("The sum of all the multiples of 6 or 9 below 1000 is : " + AddMultiplesToList.returnMultiplesOfSixAndNineBelowOneThousand().Sum());
         }
@@ -39,7 +39,6 @@ namespace Project_Euler_Problem_1
                     multiplesOfThreeAndFive.Add(multiple);
                 }
             }
-
             return multiplesOfThreeAndFive;
         }
 
@@ -59,18 +58,17 @@ namespace Project_Euler_Problem_1
                     multiplesOfSixAndNine.Add(multiple);
                 }
             }
-
             return multiplesOfSixAndNine;
         }
 
         // Adds an integer to the list if it is a multiple of the user supplied integer below 1000
-        public static List<int> returnCustomeMultiplesBelowOneThousand()
+        public static List<int> returnCustomMultiplesBelowOneThousand()
         {
-            Console.Write("Enter Integer 1: ");
-            string integerOne = Console.ReadLine();
+            Console.Write("Enter integer 1: ");
+            int integerOne = CustomMathematics.askForInt();
 
-            Console.Write("Enter Integer 2: ");
-            string integerTwo = Console.ReadLine();
+            Console.Write("Enter integer 2: ");
+            int integerTwo = CustomMathematics.askForInt();
 
             List<int> customMultiplesBelowOneThousand = new List<int>();
 
@@ -85,45 +83,7 @@ namespace Project_Euler_Problem_1
                     customMultiplesBelowOneThousand.Add(multiple);
                 }
             }
-
             return customMultiplesBelowOneThousand;
-        }
-    }
-
-    // Static Maths Class: Scope to add further methods and create a Class Library from this for use in further Euler problems
-    public static class CustomMathematics
-    {
-        // Returns true or false whether an integer is a multiple of another integer
-        public static bool IsDivisible(int multiple, int integer)
-        {
-            return (multiple % integer) == 0;
-        }
-    }
-
-    // Test Class using Xunit
-    public class TestClass
-    {
-        // Test the correct answer against the answer that the solution provides
-        [Fact]
-        public void testAnswerIsCorrect()
-        {
-            int expected = 233168;
-            int actual = AddMultiplesToList.returnMultiplesOfThreeAndFiveBelowOneThousand().Sum();
-            Assert.Equal(expected, actual);
-        }
-
-        // Test to ensure that the IsDivisble method returns true when an integer is a multiple of another
-        [Fact]
-        public void testIsDivisible()
-        {
-            Assert.True(CustomMathematics.IsDivisible(10,5));
-        }
-
-        // Test to ensure that the IsDivisble method returns false when an integer isn't a multiple of another
-        [Fact]
-        public void testIsNotDivisible()
-        {
-            Assert.False(CustomMathematics.IsDivisible(28,13));
         }
     }
 }
