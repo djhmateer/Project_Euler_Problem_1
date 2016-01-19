@@ -7,12 +7,12 @@ namespace Project_Euler_Problem_1
         // Get rid of params by having making functions
         public static bool IsDivisibleBy3(int i)
         {
-            return IsDivisible(3, i);
+            return i%3 == 0;
         }
 
         public static bool IsDivisibleBy5(int i)
         {
-            return IsDivisible(5, i);
+            return IsDivisible(i, 3);
         }
 
         // Returns true or false whether an integer is a multiple of another integer
