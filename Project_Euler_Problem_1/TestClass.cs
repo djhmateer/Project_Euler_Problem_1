@@ -10,7 +10,7 @@ namespace Project_Euler_Problem_1
         public void TestAnswerIsCorrect()
         {
             int expected = 233168;
-            int actual = AddMultiplesToList.ReturnMultiplesOfThreeAndFiveBelowOneThousand().Sum();
+            int actual = AddMultiplesToList.MultiplesOfThreeAndFiveBelowOneThousand().Sum();
             Assert.Equal(expected, actual);
         }
 

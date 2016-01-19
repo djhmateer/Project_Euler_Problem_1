@@ -10,25 +10,25 @@ namespace Project_Euler_Problem_1
         {
             Console.WriteLine("********** Project Euler: Problem One **********\n");
             Console.WriteLine("The sum of all the multiples of 3 or 5 below 1000 is : " +
-                AddMultiplesToList.ReturnMultiplesOfThreeAndFiveBelowOneThousand().Sum());
+                AddMultiplesToList.MultiplesOfThreeAndFiveBelowOneThousand().Sum());
         }
     }
 
     public static class AddMultiplesToList
     {
-        public static List<int> ReturnMultiplesOfThreeAndFiveBelowOneThousand()
+        public static List<int> MultiplesOfThreeAndFiveBelowOneThousand()
         {
-            List<int> multiplesOfThreeAndFive = new List<int>();
+            var multiplesOfThreeAndFive = new List<int>();
 
-            for (int multiple = 1; multiple < 1000; multiple++)
+            for (int i = 1; i < 1000; i++)
             {
-                if (CustomMathematics.IsDivisible(multiple, 3))
+                if (CustomMathematics.IsDivisibleBy3(i))
                 {
-                    multiplesOfThreeAndFive.Add(multiple);
+                    multiplesOfThreeAndFive.Add(i);
                 }
-                else if (CustomMathematics.IsDivisible(multiple, 5))
+                else if (CustomMathematics.IsDivisible(i, 5))
                 {
-                    multiplesOfThreeAndFive.Add(multiple);
+                    multiplesOfThreeAndFive.Add(i);
                 }
             }
             return multiplesOfThreeAndFive;
